@@ -6,13 +6,14 @@ import string
 import pandas as pd
 import numpy as np
 import nltk
-
-# Download NLTK resources if not present
-for res in ['punkt', 'stopwords', 'wordnet']:
+# download kedua resource
+for res in ['punkt', 'punkt_tab', 'stopwords', 'wordnet']:
     try:
-        nltk.data.find(f'corpora/{res}' if res != 'punkt' else f'tokenizers/{res}')
+        # tokenizers/punkt_tab khusus untuk punkt_tab
+        path = 'tokenizers/punkt_tab' if res=='punkt_tab' else f'corpora/{res}' if res!='punkt' else 'tokenizers/punkt'
+        nltk.data.find(path)
     except LookupError:
-        nltk.download(res)
+        nltk.download(res, quiet=True)
 
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
