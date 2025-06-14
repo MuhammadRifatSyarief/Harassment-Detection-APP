@@ -3,19 +3,21 @@ import streamlit as st
 import joblib
 import re
 import string
-import nltk
+import pandas as pd
+import numpy as np
 import nltk
 
-# Download NLTK resources at runtime
-nltk.download('stopwords')
-nltk.download('punkt')
-nltk.download('wordnet')
+# Download NLTK resources if not present
+for res in ['punkt', 'stopwords', 'wordnet']:
+    try:
+        nltk.data.find(f'corpora/{res}' if res != 'punkt' else f'tokenizers/{res}')
+    except LookupError:
+        nltk.download(res)
 
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
-import pandas as pd
-import numpy as np
+
 
 # --- Import Custom Model Classes ---
 # Pastikan file custom_models.py berada di direktori yang sama
