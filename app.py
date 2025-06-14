@@ -4,6 +4,13 @@ import joblib
 import re
 import string
 import nltk
+import nltk
+
+# Download NLTK resources at runtime
+nltk.download('stopwords')
+nltk.download('punkt')
+nltk.download('wordnet')
+
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
